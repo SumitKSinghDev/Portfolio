@@ -73,4 +73,3 @@ The optimized static assets will be output to the `dist/` directory ready for de
 - **LinkedIn**: [sumit-kumar-singh-0462b92b6](https://www.linkedin.com/in/sumit-kumar-singh-0462b92b6)
 - **GitHub**: [@SumitKSinghDev](https://github.com/SumitKSinghDev)
 - **Email**: [sumitksingh243@gmail.com](mailto:sumitksingh243@gmail.com)
-- **Phone**: +91 7050114544
