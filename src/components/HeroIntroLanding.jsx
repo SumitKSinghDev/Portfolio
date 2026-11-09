@@ -212,7 +212,7 @@ export default function HeroIntroLanding({ onEnter, onIntroComplete, onOpenResum
   const singhChars = displayChars.slice(12, 17) // "SINGH"
 
   return (
-    <div className="relative w-full min-h-screen lg:h-screen lg:max-h-screen bg-[#07080c] flex flex-col justify-between overflow-hidden select-none z-30 px-4 sm:px-8 pt-3 sm:pt-4 pb-3 sm:pb-5">
+    <div className="relative w-full min-h-screen lg:h-screen lg:max-h-screen bg-[#07080c] flex flex-col justify-between overflow-y-auto lg:overflow-hidden select-none z-30 px-4 sm:px-8 pt-3 sm:pt-4 pb-3 sm:pb-5">
       
       {/* Dynamic Cosmic Background: FADES IN ONCE COMPLETE NAME IS SHOWN */}
       <div
@@ -264,7 +264,7 @@ export default function HeroIntroLanding({ onEnter, onIntroComplete, onOpenResum
 
             {/* PROGRESSIVE LETTER-BY-LETTER COUNTER NAME */}
             <div className="select-none w-full">
-              <h1 className="text-4xl sm:text-6xl xl:text-7xl font-black tracking-tight text-white leading-none uppercase font-mono flex flex-col items-center lg:items-start">
+              <h1 className="text-3xl sm:text-5xl xl:text-7xl font-black tracking-tight text-white leading-none uppercase font-mono flex flex-col items-center lg:items-start">
                 
                 {/* ROW 1: "SUMIT KUMAR" (Clean inline, no awkward gaps) */}
                 <div className="flex flex-wrap items-center justify-center lg:justify-start gap-x-3 sm:gap-x-4">
@@ -429,7 +429,7 @@ export default function HeroIntroLanding({ onEnter, onIntroComplete, onOpenResum
             
             {/* Hologram Stage Container */}
             <div
-              className="relative w-[320px] sm:w-[420px] xl:w-[440px] h-[390px] sm:h-[470px] xl:h-[500px] flex items-center justify-center transition-all duration-1000 ease-out"
+              className="relative w-[280px] sm:w-[420px] xl:w-[440px] h-[350px] sm:h-[470px] xl:h-[500px] flex items-center justify-center transition-all duration-1000 ease-out"
               style={{
                 opacity: imageVisible ? 1 : 0,
                 transform: imageVisible ? 'translateX(0px) scale(1)' : 'translateX(60px) scale(0.95)',

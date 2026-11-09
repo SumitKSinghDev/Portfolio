@@ -70,7 +70,7 @@ export default function Badge3D({ onOpenResume }) {
     setGlare({ x: 50, y: 50, opacity: 0.25 })
   }
 
-  // Drag start
+  // Drag start (Desktop Mouse)
   const handleMouseDown = (e) => {
     if (e.target.closest('button') || e.target.closest('a')) return
     e.preventDefault()
@@ -83,12 +83,25 @@ export default function Badge3D({ onOpenResume }) {
     physicsRef.current.originY = physicsRef.current.currentY
   }
 
-  // Global mouse drag tracking
+  // Drag start (Mobile Touch)
+  const handleTouchStart = (e) => {
+    if (e.target.closest('button') || e.target.closest('a')) return
+    const touch = e.touches[0]
+    if (!touch) return
+    setIsDragging(true)
+    sound.playWhoosh()
+
+    physicsRef.current.dragStartX = touch.clientX
+    physicsRef.current.dragStartY = touch.clientY
+    physicsRef.current.originX = physicsRef.current.currentX
+    physicsRef.current.originY = physicsRef.current.currentY
+  }
+
+  // Global mouse & mobile touch drag tracking
   useEffect(() => {
-    const onWindowMouseMove = (e) => {
-      if (!isDragging) return
-      const dx = e.clientX - physicsRef.current.dragStartX
-      const dy = e.clientY - physicsRef.current.dragStartY
+    const handleDragMove = (clientX, clientY) => {
+      const dx = clientX - physicsRef.current.dragStartX
+      const dy = clientY - physicsRef.current.dragStartY
 
       physicsRef.current.targetX = Math.max(-160, Math.min(160, physicsRef.current.originX + dx))
       physicsRef.current.targetY = Math.max(-20, Math.min(200, physicsRef.current.originY + dy))
@@ -105,7 +118,17 @@ export default function Badge3D({ onOpenResume }) {
       })
     }
 
-    const onWindowMouseUp = () => {
+    const onWindowMouseMove = (e) => {
+      if (!isDragging) return
+      handleDragMove(e.clientX, e.clientY)
+    }
+
+    const onWindowTouchMove = (e) => {
+      if (!isDragging || !e.touches || !e.touches[0]) return
+      handleDragMove(e.touches[0].clientX, e.touches[0].clientY)
+    }
+
+    const onWindowEnd = () => {
       if (isDragging) {
         setIsDragging(false)
         physicsRef.current.targetX = 0
@@ -115,11 +138,17 @@ export default function Badge3D({ onOpenResume }) {
     }
 
     window.addEventListener('mousemove', onWindowMouseMove)
-    window.addEventListener('mouseup', onWindowMouseUp)
+    window.addEventListener('mouseup', onWindowEnd)
+    window.addEventListener('touchmove', onWindowTouchMove, { passive: true })
+    window.addEventListener('touchend', onWindowEnd)
+    window.addEventListener('touchcancel', onWindowEnd)
 
     return () => {
       window.removeEventListener('mousemove', onWindowMouseMove)
-      window.removeEventListener('mouseup', onWindowMouseUp)
+      window.removeEventListener('mouseup', onWindowEnd)
+      window.removeEventListener('touchmove', onWindowTouchMove)
+      window.removeEventListener('touchend', onWindowEnd)
+      window.removeEventListener('touchcancel', onWindowEnd)
     }
   }, [isDragging])
 
@@ -187,7 +216,7 @@ export default function Badge3D({ onOpenResume }) {
       {/* DYNAMIC STRETCHING LANYARD & TITANIUM SWIVEL CLASP               */}
       {/* ================================================================= */}
       <svg
-        className="w-[400px] h-[70px] pointer-events-none z-20 overflow-visible -mb-4"
+        className="w-[320px] sm:w-[400px] max-w-full h-[70px] pointer-events-none z-20 overflow-visible -mb-4"
         viewBox="0 0 400 70"
       >
         <defs>
@@ -274,6 +303,7 @@ export default function Badge3D({ onOpenResume }) {
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         onMouseDown={handleMouseDown}
+        onTouchStart={handleTouchStart}
         className="relative cursor-grab active:cursor-grabbing z-30 touch-none -mt-1.5"
         style={{
           transform: `translate3d(${pos.x}px, ${pos.y}px, 0px) rotateX(${rot.x}deg) rotateY(${rot.y + (isFlipped ? 180 : 0)}deg)`,
@@ -287,7 +317,7 @@ export default function Badge3D({ onOpenResume }) {
         </div>
 
         {/* Outer Card Shell with Preserve-3D (No overflow-hidden to preserve 3D backface) */}
-        <div className="w-[290px] sm:w-[310px] h-[420px] rounded-[26px] preserve-3d relative">
+        <div className="w-[280px] sm:w-[310px] h-[415px] sm:h-[420px] rounded-[26px] preserve-3d relative">
 
           {/* ============================================================= */}
           {/* CARD FRONT                                                    */}

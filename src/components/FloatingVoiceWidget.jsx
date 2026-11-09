@@ -102,7 +102,7 @@ export default function FloatingVoiceWidget({ isVisible = true }) {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className={`fixed bottom-6 right-6 z-40 flex items-center space-x-2 px-4 py-3 rounded-full bg-zinc-900 border border-white/[0.15] hover:border-cyan-400 text-white shadow-[0_10px_30px_rgba(0,0,0,0.8)] backdrop-blur-xl group transition-all duration-700 ease-out transform hover:scale-105 ${
+          className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex items-center space-x-2 px-4 py-3 rounded-full bg-zinc-900 border border-white/[0.15] hover:border-cyan-400 text-white shadow-[0_10px_30px_rgba(0,0,0,0.8)] backdrop-blur-xl group transition-all duration-700 ease-out transform hover:scale-105 ${
             isVisible
               ? 'opacity-100 translate-y-0 pointer-events-auto'
               : 'opacity-0 translate-y-6 pointer-events-none'
@@ -121,7 +121,7 @@ export default function FloatingVoiceWidget({ isVisible = true }) {
 
       {/* Floating Voice Assistant Modal/Drawer */}
       {isOpen && (
-        <div className="fixed bottom-6 right-6 z-50 w-[340px] sm:w-[380px] rounded-3xl bg-zinc-950/95 border border-white/[0.15] shadow-2xl backdrop-blur-2xl flex flex-col overflow-hidden animate-fadeIn text-slate-100">
+        <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-[380px] max-w-[380px] rounded-3xl bg-zinc-950/95 border border-white/[0.15] shadow-2xl backdrop-blur-2xl flex flex-col overflow-hidden animate-fadeIn text-slate-100">
           
           {/* Header */}
           <div className="flex items-center justify-between p-4 border-b border-zinc-800/80 bg-zinc-900/60">
