@@ -54,6 +54,7 @@ export default function App() {
       <HeroIntroLanding
         onEnter={handleEnterWorkspace}
         onIntroComplete={() => setIsIntroComplete(true)}
+        onOpenResume={() => setIsResumeOpen(true)}
       />
 
       {/* Floating Bottom-Right Tap & Talk AI Widget (Appears only after name & picture load) */}

@@ -126,7 +126,7 @@ export default function ResumeModal({ isOpen, onClose }) {
         <div className="px-5 py-3 border-t border-white/[0.08] bg-zinc-900/60 flex items-center justify-between text-xs text-zinc-500 font-mono">
           <div className="flex items-center space-x-2">
             <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-            <span>Sumit_Kumar_Singh_Resume.pdf (SHA-256 Verified)</span>
+            <span>Sumit_Kumar_Singh_Resume.pdf (Latest 2026 • 9.31 CGPA Verified)</span>
           </div>
           <span className="hidden sm:inline">Press ESC to dismiss</span>
         </div>

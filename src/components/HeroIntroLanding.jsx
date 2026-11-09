@@ -9,14 +9,15 @@ import {
   Brain,
   Activity,
   Zap,
-  CheckCircle2
+  CheckCircle2,
+  FileText
 } from 'lucide-react'
 import { sound } from '../utils/audio'
 
 const GLYPHS = '0123456789ABCDEF!@#$%&*?><'
 const FULL_NAME = 'SUMIT KUMAR SINGH'
 
-export default function HeroIntroLanding({ onEnter, onIntroComplete }) {
+export default function HeroIntroLanding({ onEnter, onIntroComplete, onOpenResume }) {
   const canvasRef = useRef(null)
   const mouseRef = useRef({ x: 0.5, y: 0.5 })
 
@@ -403,6 +404,22 @@ export default function HeroIntroLanding({ onEnter, onIntroComplete }) {
                 <Sparkles className="w-4 h-4 text-cyan-400" />
                 <span>Explore Flagship Systems</span>
               </a>
+
+              <button
+                onClick={(e) => {
+                  e.stopPropagation()
+                  sound.playClick()
+                  if (onOpenResume) {
+                    onOpenResume()
+                  } else {
+                    window.open('./Sumit_Kumar_Singh_Resume.pdf', '_blank')
+                  }
+                }}
+                className="flex items-center space-x-2 px-5 py-2.5 sm:py-3 rounded-2xl bg-zinc-900/90 hover:bg-zinc-800 border border-white/[0.1] hover:border-emerald-500/40 text-zinc-300 hover:text-white font-medium text-xs sm:text-sm transition-all cursor-pointer shadow-md"
+              >
+                <FileText className="w-4 h-4 text-emerald-400" />
+                <span>View Resume</span>
+              </button>
             </div>
 
           </div>
