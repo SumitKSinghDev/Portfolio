@@ -10,7 +10,9 @@ import {
   Activity,
   Zap,
   CheckCircle2,
-  FileText
+  FileText,
+  Keyboard,
+  Clock
 } from 'lucide-react'
 import { sound } from '../utils/audio'
 
@@ -28,6 +30,19 @@ export default function HeroIntroLanding({ onEnter, onIntroComplete, onOpenResum
   const [displayChars, setDisplayChars] = useState(
     Array(FULL_NAME.length).fill('')
   )
+  const [soundMode, setSoundMode] = useState(sound.getCounterSoundMode())
+
+  const handleToggleSoundMode = (e) => {
+    e?.stopPropagation()
+    const nextMode = soundMode === 'keyboard' ? 'watch' : 'keyboard'
+    sound.setCounterSoundMode(nextMode)
+    setSoundMode(nextMode)
+    if (nextMode === 'watch') {
+      sound.playWatchTick()
+    } else {
+      sound.playKeystroke()
+    }
+  }
 
   // Start letter-by-letter counter sequence immediately on load
   const runSequence = () => {
@@ -61,7 +76,7 @@ export default function HeroIntroLanding({ onEnter, onIntroComplete, onOpenResum
       }
 
       if (currentIndex < totalChars) {
-        sound.playClick()
+        sound.playCounterSound()
         setRevealedIndex(currentIndex)
         currentIndex++
       } else {
@@ -228,11 +243,32 @@ export default function HeroIntroLanding({ onEnter, onIntroComplete, onOpenResum
         className="relative z-20 w-full max-w-7xl mx-auto flex items-center justify-between text-xs font-mono transition-opacity duration-700"
         style={{ opacity: backgroundVisible ? 1 : 0 }}
       >
-        <div className="flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-zinc-900/90 border border-white/[0.1] backdrop-blur-md">
-          <span className="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_8px_#38bdf8] animate-pulse" />
-          <span className="text-zinc-300 font-semibold tracking-wider">
-            PORTFOLIO V2.0 • IDENTITY DECODED
-          </span>
+        <div className="flex flex-wrap items-center gap-2">
+          <div className="flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-zinc-900/90 border border-white/[0.1] backdrop-blur-md">
+            <span className="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_8px_#38bdf8] animate-pulse" />
+            <span className="text-zinc-300 font-semibold tracking-wider">
+              PORTFOLIO V2.0 • IDENTITY DECODED
+            </span>
+          </div>
+
+          {/* Interactive Sound Profile Switcher */}
+          <button
+            onClick={handleToggleSoundMode}
+            title="Toggle audio between Mechanical Keyboard and Watch Dialer"
+            className="flex items-center space-x-1.5 px-3 py-1.5 rounded-full bg-zinc-900/90 hover:bg-zinc-800 border border-white/[0.1] hover:border-cyan-400/50 text-[11px] font-mono text-zinc-300 hover:text-white transition-all cursor-pointer backdrop-blur-md shadow-sm"
+          >
+            {soundMode === 'keyboard' ? (
+              <>
+                <Keyboard className="w-3.5 h-3.5 text-cyan-400" />
+                <span>Sound: Mechanical Keys</span>
+              </>
+            ) : (
+              <>
+                <Clock className="w-3.5 h-3.5 text-amber-400" />
+                <span>Sound: Watch Dialer</span>
+              </>
+            )}
+          </button>
         </div>
 
         <div className="hidden sm:flex items-center space-x-2 text-zinc-400">
