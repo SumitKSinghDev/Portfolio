@@ -499,7 +499,7 @@ export default function HeroIntroLanding({ onEnter, onIntroComplete }) {
               {/* ========================================================= */}
               <div className="relative w-full h-full flex items-end justify-center z-10">
                 <img
-                  src="/sumit-hero-shadow.png?v=2"
+                  src="./sumit-hero-shadow.png?v=2"
                   alt="Sumit Kumar Singh"
                   className="w-full h-full object-contain object-bottom select-none pointer-events-none filter brightness-105 contrast-105 drop-shadow-[0_0_35px_rgba(6,182,212,0.35)]"
                 />

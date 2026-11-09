@@ -357,7 +357,7 @@ export default function Badge3D({ onOpenResume }) {
               <div className="relative w-24 h-24 rounded-2xl p-[1.5px] bg-gradient-to-tr from-cyan-400 via-purple-500 to-amber-400 shadow-xl">
                 <div className="w-full h-full rounded-[14px] overflow-hidden bg-zinc-950 relative flex items-center justify-center">
                   <img
-                    src="/sumit-badge.jpg"
+                    src="./sumit-badge.jpg"
                     alt="Sumit Kumar Singh"
                     className="w-full h-full object-cover object-top"
                   />
@@ -499,7 +499,7 @@ export default function Badge3D({ onOpenResume }) {
                 className="p-2.5 bg-white rounded-2xl shadow-2xl flex items-center justify-center hover:scale-105 transition-transform"
               >
                 <img
-                  src="/qr-github.png?v=2"
+                  src="./qr-github.png?v=2"
                   alt="Scannable QR Code to Sumit's GitHub & Projects"
                   className="w-24 h-24 object-contain rounded-lg select-none pointer-events-none"
                 />
@@ -561,7 +561,7 @@ export default function Badge3D({ onOpenResume }) {
                   if (onOpenResume) {
                     onOpenResume()
                   } else {
-                    window.open('/Sumit_Kumar_Singh_Resume.pdf', '_blank')
+                    window.open('./Sumit_Kumar_Singh_Resume.pdf', '_blank')
                   }
                 }}
                 className="flex items-center justify-center space-x-1 py-2 rounded-xl bg-white hover:bg-zinc-200 text-zinc-950 text-[11px] font-bold transition-colors shadow-md cursor-pointer"

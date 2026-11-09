@@ -56,7 +56,7 @@ export default function ContactSection() {
 
             {/* Resume Download */}
             <a
-              href="/Sumit_Kumar_Singh_Resume.pdf"
+              href="./Sumit_Kumar_Singh_Resume.pdf"
               download="Sumit_Kumar_Singh_Resume.pdf"
               className="flex items-center space-x-2 px-6 py-3.5 rounded-2xl bg-zinc-800/80 hover:bg-zinc-700/80 border border-white/[0.1] text-white font-medium text-sm transition-all"
             >

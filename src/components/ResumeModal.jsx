@@ -63,7 +63,7 @@ export default function ResumeModal({ isOpen, onClose }) {
           {/* Quick Header Actions */}
           <div className="flex items-center space-x-2">
             <a
-              href="/Sumit_Kumar_Singh_Resume.pdf"
+              href="./Sumit_Kumar_Singh_Resume.pdf"
               target="_blank"
               rel="noreferrer"
               onClick={() => sound.playClick()}
@@ -75,7 +75,7 @@ export default function ResumeModal({ isOpen, onClose }) {
             </a>
 
             <a
-              href="/Sumit_Kumar_Singh_Resume.pdf"
+              href="./Sumit_Kumar_Singh_Resume.pdf"
               download="Sumit_Kumar_Singh_Resume.pdf"
               onClick={() => sound.playChime()}
               title="Download official PDF copy"
@@ -116,7 +116,7 @@ export default function ResumeModal({ isOpen, onClose }) {
         {/* Embedded PDF Viewer (Expands to 100% Full Height) */}
         <div className="relative flex-1 w-full bg-zinc-950 p-2 sm:p-4 flex flex-col min-h-0">
           <iframe
-            src="/Sumit_Kumar_Singh_Resume.pdf#toolbar=1&navpanes=0&scrollbar=1&view=FitH"
+            src="./Sumit_Kumar_Singh_Resume.pdf#toolbar=1&navpanes=0&scrollbar=1&view=FitH"
             title="Sumit Kumar Singh Official Resume"
             className="w-full h-full flex-1 min-h-0 rounded-2xl border border-white/[0.08] bg-white shadow-2xl"
           />
